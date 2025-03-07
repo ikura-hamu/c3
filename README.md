@@ -10,7 +10,6 @@ c3 is a tool to analyze and warn against calling `(*testing.common).Context` wit
 
 [^1]: https://pkg.go.dev/testing#T.Context
 
-
 ```go
 package a
 
