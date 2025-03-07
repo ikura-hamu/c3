@@ -84,7 +84,7 @@ func run(pass *analysis.Pass) (any, error) {
 			}
 			visited := make(map[*ssa.Function]bool)
 			if containsContextCall(fn, visited) {
-				pass.Reportf(fn.Pos(), "avoid calling (*testing.common).Context inside Cleanup")
+				pass.ReportRangef(funcLit, "avoid calling (*testing.common).Context inside Cleanup")
 			}
 		}
 	}
