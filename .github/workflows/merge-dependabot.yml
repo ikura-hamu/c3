@@ -1,0 +1,28 @@
+name: Dependabot auto-approve
+on: pull_request
+
+permissions:
+  pull-requests: write
+
+# dependabot の PR に対して動く。
+# Go のパッチバージョンアップデートであれば approve して auto merge を有効にする。
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'ikura-hamu/c3'
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Approve and merge a PR
+        run: gh pr review --approve "$PR_URL" && gh pr merge --auto --squash "$PR_URL"
+        if: |
+          contains(steps.metadata.outputs.dependency-names, 'gomod') &&
+          steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
