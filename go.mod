@@ -4,7 +4,7 @@ go 1.24
 
 require (
 	github.com/golangci/plugin-module-register v0.1.1
-	github.com/gostaticanalysis/testutil v0.6.0
+	github.com/gostaticanalysis/testutil v0.6.1
 	golang.org/x/tools v0.31.0
 )
 
