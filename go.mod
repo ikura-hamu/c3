@@ -3,7 +3,7 @@ module github.com/ikura-hamu/c3
 go 1.24
 
 require (
-	github.com/golangci/plugin-module-register v0.1.1
+	github.com/golangci/plugin-module-register v0.1.2
 	github.com/gostaticanalysis/testutil v0.6.1
 	golang.org/x/tools v0.33.0
 )
